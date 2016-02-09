@@ -1,0 +1,70 @@
+.app-content {
+  background-color: rgb(160, 102, 207);
+  border-radius: 5px;
+  color: white;
+  font-family: 'weathericons';
+  margin-top: 100px;
+  padding: 20px;
+}
+
+.city-content {
+  margin-top: 20px;
+}
+
+.city-header {
+  background-color: rgb(139, 63, 197);
+  padding-bottom: 5px;
+  padding-top: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cities-dropdown button, .cities-dropdown ul {
+  width: 100%;
+}
+
+.city-weather {
+  padding-bottom: 20px;
+  padding-top: 0;
+  text-align: center;
+}
+
+.city-forecast-header {
+  background-color: rgb(139, 63, 197);
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.city-forecast-day-header {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.city-forecast {
+  margin-top: 20px;
+}
+
+.city-forecast-temperature {
+  margin-top: 5px;
+}
+
+.city-weather-icon {
+  font-size: 65px;
+  margin-bottom: 10px;
+}
+
+.city-forecast-icon {
+  font-size: 40px;
+}
+
+.city-weather-temperature {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.loader {
+  margin-top: 20px;
+  min-height: 50px;
+  padding: 20px;
+  text-align: center;
+}

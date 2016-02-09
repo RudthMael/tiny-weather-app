@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Weather App</title>
+
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://code.angularjs.org/1.3.12/angular.min.js" data-semver="1.3.12"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-spinner/0.8.0/angular-spinner.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="/css/weathericons.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body ng-app="forecastApp" ui-view>
+    <div class="container">
+      <div class="row" ng-controller="ForecastController">
+        <div class="col-md-6 col-md-offset-3 app-content">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <div>Sélectionner votre ville</div>
+              <div class="dropdown cities-dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  {{selectedCity.name}}
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li ng-repeat="city in cities"><a href="#" ng-click="onCityClick(city.id)">{{city.name}}</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="row city-content" ng-hide="fetchingData">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="city-header">{{selectedCity.name}}</div>
+
+              <div class="city-weather">
+                <div class="city-weather-icon">
+                  <i class="wi" ng-class="'wi-icon-' + selectedCityWeather.iconId"></i>
+                </div>
+
+                <div class="city-weather-temperature">{{ selectedCityWeather.temperature | round }}°</div>
+              </div>
+
+              <div class="row city-forecast-header">
+                <div ng-repeat="forecast in selectedCityForecast" class="col-md-4 city-forecast-day-header">
+                  {{forecast.day}}
+                </div>
+              </div>
+
+              <div class="row city-forecast">
+                <div ng-repeat="forecast in selectedCityForecast" class="col-md-4 city-forecast-day-header">
+                  <div class="city-forecast-icon">
+                    <i class="wi" ng-class="'wi-icon-' + forecast.iconId"></i>
+                  </div>
+                  <div class="city-forecast-temperature">{{ forecast.temperatureMax | round }}°</div>
+                  <div class="city-forecast-temperature">{{ forecast.temperatureMin | round }}°</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row loader" ng-show="fetchingData">
+            <div class="col-md-10 col-md-offset-1">
+              <span us-spinner="{color: '#fff'}"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/controllers/forecast.controller.js"></script>
+    <script src="/js/services/cities.services.js"></script>
+    <script src="/js/filters/round.js"></script>
+  </body>
+
+</html>
