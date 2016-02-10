@@ -7,11 +7,11 @@ app.controller('ForecastController', function($scope, Cities, $log, $q) {
    * Event trigerred when the user selects a city
    * @param  {String} cityId
    */
-  $scope.onCityClick = function(cityId) {
+  $scope.onCitySelect = function() {
     $scope.fetchingData = true;
-    $scope.selectedCity = _.find($scope.cities, {id: cityId});
+    $scope.selectedCity = _.find($scope.cities, {id: $scope.selectedCity.id});
 
-    $q.all([Cities.getCurrentWeather(cityId), Cities.getForecast(cityId)])
+    $q.all([Cities.getCurrentWeather($scope.selectedCity.id), Cities.getForecast($scope.selectedCity.id)])
     .then(function(data) {
       $scope.selectedCityWeather = data[0];
       $scope.selectedCityForecast = data[1];
@@ -35,13 +35,10 @@ app.controller('ForecastController', function($scope, Cities, $log, $q) {
       };
     });
 
-    $scope.onCityClick($scope.cities[0].id);
-    $scope.fetchingCities = false;
+    $scope.selectedCity = $scope.cities[0];
+    $scope.onCitySelect();
   }, function(response) {
     // Failed to get all cities
-    $scope.fetchingCities = false;
-  })
-  .finally(function() {
-    $scope.fetchingCities = false;
+    $log.error('Failed to get all cities');
   });
 });

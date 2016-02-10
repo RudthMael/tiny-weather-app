@@ -1,1 +1,1 @@
-var app = angular.module('forecastApp', ['ui.bootstrap', 'angularSpinner']);
+var app = angular.module('forecastApp', ['localytics.directives', 'angularSpinner']);
