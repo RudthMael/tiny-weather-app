@@ -1,0 +1,25 @@
+{
+  "name": "tiny-weather-app",
+  "homepage": "https://github.com/RudthMael/tiny-weather-app",
+  "authors": [
+    "Mael <rm@galite.net>"
+  ],
+  "description": "This is a tiny weather app for french cities",
+  "main": "index.html",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/libraries",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-chosen-localytics": "~1.0.7"
+  }
+}
